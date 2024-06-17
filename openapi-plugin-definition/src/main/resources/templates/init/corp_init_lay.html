@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<!--    <link th:href="@{css/background.css}" href="../static/css/background.css" rel="stylesheet">-->
+</head>
+
+<body>
+<form class="layui-form" th:action="@{/auto/corp/init/org_emp}" method="post" th:object="${corpInit}">
+
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">数据处理类型</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <select name="initType" lay-verify="required">-->
+<!--                <option value=""></option>-->
+<!--                <option value="0">初次初始化(可能存在多次)</option>-->
+<!--                <option value="1">部门核查</option>-->
+<!--                <option value="2">人员核查</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">数据处理类型</label>
+        <div class="layui-input-block">
+            <select name="initType" lay-verify="required">
+                <option value=""></option>
+                <option value="0">初次初始化(可能存在多次)</option>
+                <option value="1">部门核查</option>
+                <option value="2">人员核查</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分贝通公司ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="companyId" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分贝通公司名称</label>
+        <div class="layui-input-block">
+            <input th:type="text" name="fbtCompName"  placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="corpInit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(corpInit)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+server:
+  port: 8200
+  servlet:
+    context-path: /openapi
+
+spring:
+  profiles:
+    active: local
+  cache:
+    type: redis
+#    ehcache:
+#      config: classpath:config/ehcache.xml
+  redis:
+    database: 6
+    host: 172.16.0.7
+    port: 6379
+    password:
+    # 如果是redis集群使用下列配置
+#    cluster:
+#      nodes:
+#        - 127.0.0.1:7000
+#        - 127.0.0.1:7001
+#        - 127.0.0.1:7002
+#        - 127.0.0.1:7003
+#        - 127.0.0.1:7004
+#        - 127.0.0.1:7005
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 100
+        min-idle: 0
+    lettuce:
+      pool:
+        max-active: 5000
+
+openapi:
+  url: http://127.0.0.1:10010/

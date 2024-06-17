@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenbeitong.openapi.plugin.fxiaoke.sdk.mapper.FxiaokeTaskMapper">
+
+    <resultMap id="Task" type="com.fenbeitong.openapi.plugin.fxiaoke.sdk.entity.FxiaokeTask">
+        <id column="ID" jdbcType="BIGINT" property="id" />
+        <result column="TASK_TYPE" jdbcType="VARCHAR" property="taskType" />
+        <result column="CORP_ID" jdbcType="VARCHAR" property="corpId" />
+        <result column="EVENT_TIME" jdbcType="BIGINT" property="eventTime" />
+        <result column="DATA_ID" jdbcType="VARCHAR" property="dataId" />
+        <result column="DATA_SRC" jdbcType="INTEGER" property="dataSrc" />
+        <result column="DATA_TYPE" jdbcType="INTEGER" property="dataType" />
+        <result column="DATA_CONTENT" jdbcType="VARCHAR" property="dataContent" />
+        <result column="DATA_REMARK" jdbcType="VARCHAR" property="dataRemark" />
+        <result column="PRIORITY" jdbcType="INTEGER" property="priority" />
+        <result column="EXECUTE_MAX" jdbcType="INTEGER" property="executeMax" />
+        <result column="EXECUTE_NUM" jdbcType="INTEGER" property="executeNum" />
+        <result column="EXECUTE_BEGIN" jdbcType="TIMESTAMP" property="executeBegin" />
+        <result column="EXECUTE_END" jdbcType="TIMESTAMP" property="executeEnd" />
+        <result column="EXECUTE_RESULT" jdbcType="VARCHAR" property="executeResult" />
+        <result column="STATE" jdbcType="INTEGER" property="state" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+
+    <insert id="insert2HistoryById" parameterType="java.lang.Long">
+        INSERT INTO dingtalk_task_history SELECT * FROM DINGTALK_TASK WHERE ID=#{id}
+    </insert>
+
+
+    <select id="countFxiaokeNeedProcessedTask" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM fxiaoke_task
+        WHERE (STATE = 0 OR ( STATE = 99 AND EXECUTE_NUM &lt; EXECUTE_MAX ))
+        AND (TASK_TYPE='fxiaoke_approval_car' or TASK_TYPE='fxiaoke_approval_trip')
+    </select>
+
+    <select id="getFxiaokeNeedProcessedTaskList" resultMap="Task" parameterType="java.util.Map">
+        SELECT * FROM fxiaoke_task
+        WHERE (STATE = 0 OR ( STATE = 99 AND EXECUTE_NUM &lt; EXECUTE_MAX )
+        OR ( STATE = 99 AND NEXT_EXECUTE &lt;= now() ))
+        AND (TASK_TYPE='fxiaoke_approval_car' or TASK_TYPE='fxiaoke_approval_trip')
+        ORDER BY EVENT_TIME ASC, ID DESC LIMIT #{limit}
+    </select>
+</mapper>

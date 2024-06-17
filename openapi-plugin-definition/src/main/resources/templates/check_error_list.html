@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/layui.css}" href="css/layui.css" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div th:each="item : ${check_error_list}">
+    <p> 公司ID:<a th:text="${{item.companyId}}"></a></p>
+    <p>公司名称:<a th:text="${{item.companyName}}"></a></p>
+    <p>第三方部门ID:<a th:text="${{item.thirdOrgId}}"></a></p>
+    <p>第三方部门名称:<a th:text="${{item.thirdOrgName}}"></a></p>
+    <p>第三方人员ID:<a th:text="${{item.thirdEmpId}}"></a></p>
+    <p>第三方人员名称:<a th:text="${{item.thirdEmpName}}"></a></p>
+    <p>手机号:<a th:text="${{item.mobilePhone}}"></a></p>
+    <p>邮箱:<a th:text="${{item.email}}"></a></p>
+
+</div>
+
+
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+</body>
+</html>

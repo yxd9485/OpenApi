@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<form class="layui-form" th:action="@{/auto/corp/plugin/config}"  method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">分贝通公司ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="fbt_comp_id" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">授权负责人分贝通ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="admin_fbt_id" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">授权负责人第三方ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="admin_third_id" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方平台企业ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="third_comp_id" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分贝通微应用名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="fbt_micro_app" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方平台appKey</label>
+        <div class="layui-input-block">
+            <input type="text" name="third_app_key" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方平台appSecret</label>
+        <div class="layui-input-block">
+            <input type="text" name="third_app_secret" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方agentId</label>
+        <div class="layui-input-block">
+            <input type="text" name="third_agent_id" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <!--后期加入选项列表，进行相应选择-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">代理url</label>
+        <div class="layui-input-block">
+            <input type="text" name="proxy_url" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="autoCompPluginConfig">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(autoCompPluginConfig)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+</body>
+</html>

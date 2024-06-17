@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.fenbeitong</groupId>
+        <artifactId>openapi-plugin-server-starter</artifactId>
+        <version>${openapi.version}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>openapi-plugin-feishu-server-starter</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <skip-maven-deploy>true</skip-maven-deploy>
+        <start-class>com.fenbeitong.Application</start-class>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fenbeitong</groupId>
+            <artifactId>openapi-plugin-feishu</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- Build -->
+    <build>
+        <!-- 打包后的启动jar名称 -->
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,1 @@
+package com.fenbeitong.openapi.plugin.func.company.dao;import com.fenbeitong.openapi.plugin.core.db.OpenApiBaseDao;import com.fenbeitong.openapi.plugin.func.company.entity.OpenBillExtInfo;import org.springframework.stereotype.Component;/** * Created by huangsiyuan on 2021/09/01. */@Componentpublic class OpenBillExtInfoDao extends OpenApiBaseDao<OpenBillExtInfo> {}

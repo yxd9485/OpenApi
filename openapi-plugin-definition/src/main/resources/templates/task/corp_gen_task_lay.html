@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<!--    <link th:href="@{css/background.css}" href="../static/css/background.css" rel="stylesheet">-->
+</head>
+
+<body>
+<form class="layui-form" th:action="@{/auto/corp/task/genTask}" method="post" th:object="${corpGenTask}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">企业ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="corpId" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">插件类型</label>
+        <div class="layui-input-block">
+            <select name="pluginType" lay-verify="required">
+                <option value=""></option>
+                <option value="dingtalk">钉钉</option>
+                <option value="wechat">企业微信</option>
+                <option value="seeyon">致远</option>
+                <option value="feishu">飞书</option>
+                <option value="welink">华为</option>
+                <option value="yunzhijia">云之家</option>
+                <option value="fanwei">泛微</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">任务类型</label>
+        <div class="layui-input-block">
+            <select name="taskType" lay-verify="required">
+                <option value=""></option>
+                <option value="0">新增人员</option>
+                <option value="1">修改人员</option>
+                <option value="2">删除人员</option>
+                <option value="3">新增部门</option>
+                <option value="4">修改部门</option>
+                <option value="5">删除人员</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">数据ID</label>
+        <div class="layui-input-block">
+            <input th:type="text" name="dataId" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="autoCompAccountConfig">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(corpGenTask)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+
+<form class="layui-form" th:action="@{/auto/corp/approve/config}" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">分贝通公司ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="fbt_comp_id" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方审批code</label>
+        <div class="layui-input-block">
+            <input type="text" name="third_approve_code" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方审批应用名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="third_approve_name" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方审批单类型</label>
+        <div class="layui-input-block">
+            <select name="third_approve_type" lay-verify="required">
+                <option value=""></option>
+                <option value="1">差旅</option>
+                <option value="12">用车</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="autoCompApproveConfig">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(autoCompApproveConfig)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+</body>
+</html>

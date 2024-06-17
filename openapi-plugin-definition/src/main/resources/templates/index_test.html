@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-fluid layadmin-homepage-fluid">
+        <div class="layui-row layui-col-space8">
+            <div class="layui-col-md12">
+                <div class="layui-fluid layadmin-homepage-content">
+                    <div class="layui-row layui-col-space20 layadmin-homepage-list-imgtxt">
+                        <div class="layui-col-md12">
+                            <div class="grid-demo" id="flow_welcome_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">内容主体区域</div>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © https://fenbeitong.com 北京分贝通科技有限公司
+    </div>
+
+</div>
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+    var isShow = true;  //定义一个标志位
+    $('.kit-side-fold').click(function () {
+        //选择出所有的span，并判断是不是hidden
+        $('.layui-nav-item span').each(function () {
+            if ($(this).is(':hidden')) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+        //判断isshow的状态
+        if (isShow) {
+            $('.layui-side.layui-bg-black').width(60); //设置宽度
+            $('.kit-side-fold i').css('margin-right', '90%');  //修改图标的位置
+            //将footer和body的宽度修改
+            $('.layui-body').css('left', 60 + 'px');
+            $('.layui-footer').css('left', 60 + 'px');
+            //将二级导航栏隐藏
+            $('dd span').each(function () {
+                $(this).hide();
+            });
+            //修改标志位
+            isShow = false;
+        } else {
+            $('.layui-side.layui-bg-black').width(200);
+            $('.kit-side-fold i').css('margin-right', '30%');
+            $('.layui-body').css('left', 200 + 'px');
+            $('.layui-footer').css('left', 200 + 'px');
+            $('dd span').each(function () {
+                $(this).show();
+            });
+            isShow = true;
+        }
+    });
+
+</script>
+
+
+<script>
+    layui.use(['admin', 'laydate', 'flow'], function () {
+        var $ = layui.$,
+            admin = layui.admin,
+            setter = layui.setter,
+            flow = layui.flow,
+            laydate = layui.laydate;
+        laydate.render({
+            elem: '#init_show_date'
+            , position: 'static'
+            , showBottom: false
+        });
+
+        flow.load({
+            elem: '#flow_welcome_id' //指定列表容器
+            , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
+                var lis = [];
+
+                admin.req({
+                    url: setter.apiHost + '/sys/welcome/list?version=2&pageSize=5&state=1&pageIndex=' + page //实际使用请改成服务端真实接口
+                    , method: "get"
+                    , done: function (res) {
+                        //假设你的列表返回在data集合中
+                        layui.each(res.data, function (index, item) {
+                            var html_div = ' <div class="panel-body layadmin-homepage-shadow" >'
+                                + '<div class="media-body"> '
+                                + ' <div class="pad-btm">'
+                                + ' <p class="fontColor">'
+                                + ' <a href="javascript:;">' + item.posterName + '</a>在<span>' + item.createDtime + '</span>发布<span>' + item.theme + '</span></p>'
+                                + ' <p class="min-font">'
+                                + ' <span class="layui-breadcrumb" lay-separator="-">'
+                                + ' <a href="javascript:;" class="layui-icon layui-icon-cellphone"></a>'
+                                + ' <a href="javascript:;">从移动</a>'
+                                + ' <a href="javascript:;">11分钟前</a>'
+                                + ' </span>'
+                                + ' </p>'
+                                + ' <p>' + item.content + '</p>';
+
+                            if (item.imageSrc != res.del_url) {
+                                html_div = html_div + ' <img class="h-img" src="' + item.imageSrc + '"/> ';
+                            }
+                            html_div = html_div + ' </div>'
+                                + ' </div>'
+                                + ' </div>';
+                            lis.push(html_div);
+                        });
+                        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                        //alert(page+'---'+res.count);
+                        next(lis.join(''), page < (res.count / 5));
+                    },
+                    fail: function (jqXHR, textStatus, errorThrown) {
+                        layer.msg("获取信息失败")
+                    }
+                });
+
+            }
+        });
+
+
+    });
+</script>
+
+
+</body>
+</html>

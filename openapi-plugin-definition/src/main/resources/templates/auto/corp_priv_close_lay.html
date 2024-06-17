@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+
+<form class="layui-form" th:action="@{/auto/corp/priv/config}" method="post">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">公司ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="companyId"  placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">添加所有权限类型都关闭数据</label>
+        <div class="layui-input-block">
+            <select name="closeAll" lay-verify="required">
+                <option value=""></option>
+                <option value="close_all">是</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="autoCompPrivCloseConfig">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(autoCompPrivCloseConfig)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+</body>
+</html>

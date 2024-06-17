@@ -1,0 +1,9 @@
+server:
+  port: 8200
+log:
+  path: /data/logs/openapi-plugin
+  keep:
+    day: 10
+
+wechat:
+  callback-tag: dev

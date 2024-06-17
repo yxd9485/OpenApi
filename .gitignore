@@ -1,0 +1,21 @@
+### Spring Boot ###
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+gen/
+
+### LOGS ###
+logs/
+*.log
+
+### Mac OS ###
+.DS_Store
+
+### VS CODE ###
+.vscode/

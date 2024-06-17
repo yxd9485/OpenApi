@@ -1,0 +1,24 @@
+nacos:
+  config:
+    data-id: openapi-plugin-wechat
+    server-addr: mse-f92e27f2-nacos-ans.mse.aliyuncs.com:8848
+    group: OPENAPI_PLUGIN
+    namespace: @profile.name@
+
+spring:
+  application:
+    name: openapi-plugin-wechat
+  profiles:
+    active: @profile.name@
+  cache:
+    type: redis
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    default_property_inclusion: NON_NULL
+    time-zone: GMT+8
+
+vehicle:
+  swift:
+    enabled: false
+  adaptive:
+    enabled: true

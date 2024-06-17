@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+
+<form class="layui-form" th:action="@{/auto/corp/priv/config}" method="post">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">公司ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="companyId" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">场景</label>
+        <div class="layui-input-block">
+            <select name="scene" lay-verify="required">
+                <option value=""></option>
+                <option value="air">国内机票</option>
+                <option value="intl_air">国际机票</option>
+                <option value="hotel">酒店</option>
+                <option value="train">火车</option>
+                <option value="car">用车</option>
+                <option value="mall">采购</option>
+                <option value="takeaway">外卖</option>
+                <option value="dinners">用餐</option>
+                <option value="shansong">闪送</option>
+                <option value="shunfeng">顺丰</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">使用范围</label>
+        <div class="layui-input-block">
+            <select name="privType">
+                <option value="1">默认值</option>
+                <option value="1">允许为本人</option>
+                <option value="2">允许为本人和其他企业员工</option>
+                <option value="3">允许为本人和其他企业员工和非企业员工</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">权限类型</label>
+        <div class="layui-input-block">
+            <input type="text" name="roleType" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">限制新建差旅信息</label>
+        <div class="layui-input-block">
+            <select name="oneselfLimit">
+                <option value="0">默认值</option>
+                <option value="0">不限制</option>
+                <option value="1">限制</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">行程/采购审批</label>
+        <div class="layui-input-block">
+            <select name="verifyFlag">
+                <option value="false">默认值</option>
+                <option value="true">需要</option>
+                <option value="false">不需要</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否限制规则</label>
+        <div class="layui-input-block">
+            <select name="ruleLimitFlag">
+                <option value="false">默认值</option>
+                <option value="true">是</option>
+                <option value="false">否</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">规则ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="ruleId" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单审批</label>
+        <div class="layui-input-block">
+            <select name="order_verify_flag">
+                <option value="false">默认值</option>
+                <option value="true">需要</option>
+                <option value="false">不需要</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">申请用车规则ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="applyRuleId" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否可以超规下单(采购专用)</label>
+        <div class="layui-input-block">
+            <select name="exceedBuyFlag">
+                <option value="false">默认值</option>
+                <option value="true">是</option>
+                <option value="false">否</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">超规控制</label>
+        <div class="layui-input-block">
+            <select name="exceedBuyType">
+                <option value="1">默认值</option>
+                <option value="1">禁止下单</option>
+                <option value="2">填写理由后允许下单</option>
+                <option value="3">提交订单审批</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">退票控制</label>
+        <div class="layui-input-block">
+            <select name="refundTicketType">
+                <option value="0">默认值</option>
+                <option value="0">不限制</option>
+                <option value="1">填写理由后允许退订</option>
+                <option value="2">提交退订审批</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">改签控制</label>
+        <div class="layui-input-block">
+            <select name="changesTicketType">
+                <option value="0">默认值</option>
+                <option value="0">不限制</option>
+                <option value="1">填写理由后允许退订</option>
+                <option value="2">提交退订审批</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否允许接送机</label>
+        <div class="layui-input-block">
+            <select name="allowShuttle">
+                <option value="false">默认值</option>
+                <option value="true">是</option>
+                <option value="false">否</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">个人支付</label>
+        <div class="layui-input-block">
+            <select name="personalPay">
+                <option value="false">默认值</option>
+                <option value="true">开启</option>
+                <option value="false">关闭</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="autoCompPrivConfig">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function () {
+        var form = layui.form;
+        form.render();
+        //监听提交
+        form.on('submit(autoCompPrivConfig)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+
+</body>
+</html>

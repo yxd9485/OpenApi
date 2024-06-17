@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">分贝通实施运维平台</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="">邮件管理</a>
+                    </dd>
+                    <dd>
+                        <a href="">消息管理</a>
+                    </dd>
+                    <dd>
+                        <a href="">授权管理</a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item"><a href="javascript:;">跪下</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="">基本资料</a>
+                    </dd>
+                    <dd>
+                        <a href="">安全设置</a>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="https://baidu.com">退下</a></li>
+        </ul>
+    </div>
+
+
+    <!--左侧菜单栏-->
+    <div>
+        <div class="layui-side-scroll">
+            <div title="菜单缩放" class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;"><i class="fa fa-user-circle-o fa-lg"></i> <span>企业配置</span></a>
+                    <dl class="layui-nav-child">
+                        <!--                        <i th:class="fa corp-account-param fa-lg"></i>-->
+                        <dd><a th:href="@{/auto/corp/account}"> <span>企业账户</span></a></dd>
+                        <dd><a th:href="@{/auto/corp/plugin}"><i class="fa corp-plugin-param fa-lg"></i>
+                            <span>企业插件</span></a></dd>
+                        <dd><a th:href="@{/auto/corp/priv/add}"><i class="fa corp-priv-param fa-lg"></i> <span>企业权限添加</span></a></dd>
+                        <dd><a th:href="@{/auto/corp/approve}"><i class="fa corp-approve-param fa-lg"></i> <span>企业审批</span></a>
+                        </dd>
+                        <dd><a th:href="@{/auto/corp/msg}"><i class="fa corp-msg-send-param fa-lg"></i><span>第三方人员消息通知</span></a>
+                        </dd>
+                        <dd><a href="javascript:;"><i class="fa corp-msg-send-param fa-lg"></i> <span>分贝通CSM消息通知</span></a>
+                        </dd>
+                        <dd><a th:href="@{/auto/corp/org_emp/bind}"><i class="fa corp-org-param fa-lg"></i> <span>企业组织架构</span></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-vcard-one fa-lg"></i> <span>企业检查</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/auto/corp/check/org_emp}"><i class="fa dingtalk-org-check fa-lg"></i> <span>部门检查</span></a>
+                        </dd>
+                        <dd><a th:href="@{/auto/corp/check/org_emp}"><i class="fa dingtalk-emp-check fa-lg"></i> <span>人员检查</span></a>
+                        </dd>
+                        <dd><a th:href="@{/auto/corp/check/org_emp}"><i class="fa dingtalk-fbt-mobile-check fa-lg"></i>
+                            <span>分贝通手机号检查</span></a></dd>
+                        <dd><a th:href="@{/auto/corp/check/org_emp}"><i class="fa dingtalk-fbt-priv-check fa-lg"></i> <span>分贝通权限检查</span></a>
+                        </dd>
+                        <dd><a th:href="@{/auto/corp/check/org_emp}"><i class="fa fbt-account-check fa-lg"></i> <span>分贝通人员账户检查</span></a>
+                        </dd>
+                        <dd><a href="javascript:;"><i class="fa openapi-priv-check fa-lg"></i> <span>openapi权限检查</span></a>
+                        </dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-vcard-one fa-lg"></i> <span>数据初始化</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/auto/corp/init}"><i class="fa fa-org-sync fa-lg"></i> <span>组织架构同步</span></a></dd>
+                        <dd><a th:href="@{/auto/corp/init/callback/regist}"><i class="fa fa-org-sync fa-lg"></i> <span>配置钉钉消息回调</span></a></dd>
+<!--                        <dd><a th:href="@{/auto/corp/init/callback/regist}"><i class="fa fa-org-sync fa-lg"></i> <span>配置钉钉消息回调</span></a></dd>-->
+                        <dd><a th:href="@{/auto/corp/init}"><i class="fa fa-dep-check fa-lg"></i> <span>部门核查</span></a></dd>
+                        <dd><a th:href="@{/auto/corp/init}"><i class="fa fa-emp-check fa-lg"></i> <span>人员核查</span></a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-vcard-one fa-lg"></i> <span>企业工具</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/auto/corp/task/gen}"><i class="fa fa-emp-check fa-lg"></i> <span>任务管理工具</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa a-th-list fa-lg"></i> <span>钉钉审批工具</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-frown-o fa-lg"></i> <span>钉钉部门工具</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-frown-o fa-lg"></i> <span>钉钉人员工具</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-send-o fa-lg"></i> <span>分贝通企业配置工具</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-frown-o fa-lg"></i> <span>分贝通路由工具</span></a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-vcard fa-lg"></i> <span>企业管理</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;"><i class="fa fa-corp-list fa-lg"></i> <span>企业账户列表</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-plugin-m fa-lg"></i> <span>企业插件管理</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-priv-m fa-lg"></i> <span>企业权限管理</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-approve-m fa-lg"></i> <span>企业审批管理</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-msg-m fa-lg"></i> <span>企业消息管理</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-org-m fa-lg"></i> <span>企业组织架构管理</span></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-diamond fa-lg"></i> <span>管理设置</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;"><i class="fa fa-address-book fa-lg"></i> <span>账号管理</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-check-square fa-lg"></i> <span>授权管理</span></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-gear fa-lg"></i> <span>系统管理</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;"><i class="fa fa-window-restore fa-lg"></i> <span>系统信息</span></a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-database fa-lg"></i> <span>操作日志</span></a></dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">内容主体区域</div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © https://fenbeitong.com 北京分贝通科技有限公司
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+        element.init();
+
+    });
+</script>
+
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+    var isShow = true;  //定义一个标志位
+    $('.kit-side-fold').click(function () {
+        //选择出所有的span，并判断是不是hidden
+        $('.layui-nav-item span').each(function () {
+            if ($(this).is(':hidden')) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+        //判断isshow的状态
+        if (isShow) {
+            $('.layui-side.layui-bg-black').width(60); //设置宽度
+            $('.kit-side-fold i').css('margin-right', '90%');  //修改图标的位置
+            //将footer和body的宽度修改
+            $('.layui-body').css('left', 60 + 'px');
+            $('.layui-footer').css('left', 60 + 'px');
+            //将二级导航栏隐藏
+            $('dd span').each(function () {
+                $(this).hide();
+            });
+            //修改标志位
+            isShow = false;
+        } else {
+            $('.layui-side.layui-bg-black').width(200);
+            $('.kit-side-fold i').css('margin-right', '30%');
+            $('.layui-body').css('left', 200 + 'px');
+            $('.layui-footer').css('left', 200 + 'px');
+            $('dd span').each(function () {
+                $(this).show();
+            });
+            isShow = true;
+        }
+    });
+
+</script>
+
+</body>
+</html>

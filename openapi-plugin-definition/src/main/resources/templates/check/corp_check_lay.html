@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link th:href="@{/css/layui.css}" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<!--    <link th:href="@{css/background.css}" href="../static/css/background.css" rel="stylesheet">-->
+</head>
+
+<body>
+<form class="layui-form" th:action="@{/auto/corp/check/org/config}" method="post" th:object="${corpCheck}">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">检查类型</label>
+        <div class="layui-input-block">
+            <select name="checkType" lay-verify="required">
+                <option value=""></option>
+                <option value="0">openapi</option>
+                <option value="1">钉钉</option>
+                <option value="2">企业微信</option>
+                <option value="3">致远</option>
+                <option value="4">飞书</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">第三方公司ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="thirdCompanyId" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分贝通公司名称</label>
+        <div class="layui-input-block">
+            <input th:type="text" name="fbtCompName"  placeholder="请输入内容" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">检查细则</label>
+        <div class="layui-input-block">
+            <select name="checkDetail" lay-verify="required">
+                <option value=""></option>
+                <option value="0">错误部门检查</option>
+                <option value="1">人员检查</option>
+                <option value="2">未设置分贝通手机号检查</option>
+                <option value="3">未设置分贝通权限检查</option>
+                <option value="4">是否开通分贝通账户检查</option>
+            </select>
+        </div>
+    </div>
+
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">部门检查</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input th:type="text" name="thirdOrgId"  placeholder="请输入内容" autocomplete="off" class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">人员检查</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input th:type="text" name="thirdEmpId"  placeholder="请输入内容" autocomplete="off" class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">分贝通手机号检查</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input th:type="text" name="fbtMobilePhone"  placeholder="请输入内容" autocomplete="off" class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">分贝通权限检查</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input th:type="text" name="fbtRoleType"  placeholder="请输入内容" autocomplete="off" class="layui-input">-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">公司是否属于教育行业</label>
+        <div class="layui-input-block">
+            <select name="education" lay-verify="required">
+                <option value=""></option>
+                <option value="1">是</option>
+                <option value="0">否</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="corpCheck">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(corpCheck)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+
+</body>
+</html>

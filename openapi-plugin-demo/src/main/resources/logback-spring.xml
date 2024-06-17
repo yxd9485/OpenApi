@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <springProperty scope="context" name="log.path" source="log.path" />
+    <springProperty scope="context" name="log.keep.day" source="log.keep.day"/>
+    <springProperty scope="context" name="server.port" source="server.port"/>
+
+    <property name="LOG_PATH" value="${log.path}"/>
+    <property name="LOG_KEEP_DAY" value="${log.keep.day}"/>
+    <property name="SERVER_PORT" value="${server.port}"/>
+    <property name="APPNAME" value="${LOG_PATH}/plugin-${SERVER_PORT}"/>
+
+    <!--控制台输出-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%X{requestId}] %logger{20}:%line - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--文件输出-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">　　　　　　　　　　　　
+        <file>${APPNAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">　　　　　　　　　　　　
+            <fileNamePattern>${LOG_NAME}-%d{yyyy-MM-dd}.log.zip</fileNamePattern>　　　　　　　　　　　　　
+            <maxHistory>${LOG_KEEP_DAY}</maxHistory>　　　　　　　　　　　
+        </rollingPolicy>　　　　　
+        <encoder>　　　　　　　　　　　
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%X{requestId}] %logger{20}:%line - %msg%n</pattern>　　　　　　　　　　　
+            <charset>UTF-8</charset>
+        </encoder>　　
+    </appender>
+
+    <!--主日志级别-->
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+
+</configuration>

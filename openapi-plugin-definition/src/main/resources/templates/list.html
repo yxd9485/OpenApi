@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/layui.css}" href="css/layui.css" rel="stylesheet" type="text/css"></link>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div th:each="item : ${list}">
+    <p><a th:text="${{item.appId}}"></a></p>
+    <p><a th:text="${{item.scene}}"></a></p>
+    <p><a th:text="${{item.permissionJson}}"></a></p>
+    <p><a th:text="${{item.roleType}}"></a></p>
+
+</div>
+
+
+<script type="text/javascript" th:src="@{/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui.all.js}"></script>
+</body>
+</html>
